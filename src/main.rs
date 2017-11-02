@@ -12,15 +12,14 @@ fn main() {
     loop {
         println!("Please input your guess");
         number_of_tries += 1;
-        let mut guess = String::new();
-        io::stdin().read_line(&mut guess).expect("Failed to read line");
-        let guess: u32 = match guess.trim().parse()
+        let guess: u32 = match get_user_input()
         {
-            Ok(num) => num,
-            Err(_) => {
-                println!("Your input was invalid, please try again!");
+            Ok(number) => number,
+            Err(error_info) => 
+            {
+                println!("{}", error_info);
                 continue;
-                },
+            }
         };
         println!("You guessed: {}", guess);
         print!("Number of tries: ");    
@@ -35,5 +34,25 @@ fn main() {
             }
         }
     
+    }
+}
+
+fn get_user_input() -> Result<u32, String> {
+    let mut guess = String::new();
+    match io::stdin().read_line(&mut guess)
+    {
+        Ok(_) => {
+            match guess.trim().parse()
+            {
+                Ok(num) => Ok(num),
+                Err(error) => 
+                {
+                    let mut error_info = String::from(error.to_string());
+                    error_info.insert_str(0, "in parsing u32, ");
+                    Err(error_info)
+                },
+            }
+        }
+        Err(error) => Err(error.to_string()),
     }
 }
