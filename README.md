@@ -15,3 +15,5 @@ Game written in Rust where you try to guess the number that is randomly generate
 ### Expected behavior.
 
 1. When asked for input, an input that can not be parsed to a integer will result in an error message from parseIntError prepended with `in parsing u32, `.
+
+2. On finish of the game, all guesses will be displayed with the value that corresponds to which try it was.
