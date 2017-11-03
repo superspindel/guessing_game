@@ -32,10 +32,14 @@ fn main() {
             Ordering::Greater   => println!("Too big!"),
             Ordering::Equal     => {
                 println!("You win");
-                for &(guess_number, guess_value) in guess_vector.iter()
+                for &(guess_number, guess_value) in guess_vector.clone().iter()
                 {
                     println!("Numbers of guesses: {}, Guessed value: {}", guess_number, guess_value);
                 };
+                for &(guess_number, guess_value) in guess_vector.iter()
+                {
+                    println!("Numbers of guesses: {}, Guessed value: {}", guess_number, guess_value);
+                }
                 break;
             }
         }
