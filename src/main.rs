@@ -9,6 +9,7 @@ fn main() {
     let mut guess_vector = Vec::new();
     println!("Guess the number!");
     let secret_number = rand::thread_rng().gen_range(1,101);
+    println!("{}", secret_number);
     let mut number_of_tries = 0;
     loop {
         println!("Please input your guess");
@@ -32,14 +33,10 @@ fn main() {
             Ordering::Greater   => println!("Too big!"),
             Ordering::Equal     => {
                 println!("You win");
-                for &(guess_number, guess_value) in guess_vector.clone().iter()
+                for &(guess_number, guess_value) in guess_vector.iter().rev().take(3)
                 {
                     println!("Numbers of guesses: {}, Guessed value: {}", guess_number, guess_value);
                 };
-                for &(guess_number, guess_value) in guess_vector.iter()
-                {
-                    println!("Numbers of guesses: {}, Guessed value: {}", guess_number, guess_value);
-                }
                 break;
             }
         }
