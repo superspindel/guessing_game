@@ -16,4 +16,4 @@ Game written in Rust where you try to guess the number that is randomly generate
 
 1. When asked for input, an input that can not be parsed to a integer will result in an error message from parseIntError prepended with `in parsing u32, `.
 
-2. On finish of the game, last 3 guesses will be displayed to the user in reversed order.
+2. On finish of the game, last 3 guesses will be displayed to the user in reversed order, by taking the the hashmap and creating a vector and sorting that vector.
