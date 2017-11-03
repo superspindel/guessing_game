@@ -12,7 +12,6 @@ fn main() {
     let mut number_of_tries = 0;
     loop {
         println!("Please input your guess");
-        number_of_tries += 1;
         let guess: u32 = match get_user_input()
         {
             Ok(number) => number,
@@ -22,6 +21,7 @@ fn main() {
                 continue;
             }
         };
+        number_of_tries += 1;
         println!("You guessed: {}", guess);
         print!("Number of tries: ");    
         println!("{}", number_of_tries);
