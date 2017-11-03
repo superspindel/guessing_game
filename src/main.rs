@@ -33,10 +33,12 @@ fn main() {
             Ordering::Greater   => println!("Too big!"),
             Ordering::Equal     => {
                 println!("You win");
-                for (guess_number, guess_value) in guess_hashmap.iter()
+                let mut guess_vec: Vec<(&u32, &String)> = guess_hashmap.iter().collect();
+                guess_vec.sort_by(|a, b| a.cmp(b));
+                for &(guess_number, guess_value) in guess_vec.iter().rev().take(3)
                 {
-                    println!("Numbers of guesses: {}, Guessed value: {}", guess_number, guess_value);
-                };
+                    println!("{}, {}", guess_number, guess_value);
+                }
                 break;
             }
         }
